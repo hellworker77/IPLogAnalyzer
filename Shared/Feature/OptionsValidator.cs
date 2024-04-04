@@ -34,12 +34,8 @@ public class OptionsValidator: AbstractValidator<Options>
             .When(x => x.AddressMask.HasValue) 
             .WithMessage("Address mask must be less than or equal to 32.");
     }
-    private bool IsValidIpv4Address(string? address)
+    private bool IsValidIpv4Address(string address)
     {
-        if (address is null)
-        {
-            return false;
-        }
         var parts = address.Split('.');
         if (parts.Length != 4)
         {
