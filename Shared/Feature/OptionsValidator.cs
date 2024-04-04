@@ -48,7 +48,7 @@ public class OptionsValidator: AbstractValidator<Options>
         
         foreach (var part in parts)
         {
-            if (!int.TryParse(part, out var value) || value < 0 || value > 255)
+            if (!byte.TryParse(part, out var value))
             {
                 return false;
             }
