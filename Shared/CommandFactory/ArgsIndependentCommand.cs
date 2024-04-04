@@ -14,7 +14,7 @@ public class ArgsIndependentCommand : AbstractCommand
         _configuration = configuration;
     }
 
-    protected override bool CheckIsArgsNotEmpty(string[] args)
+    protected override bool DetermineCommandByArgs(string[] args)
     {
         return true;
     }

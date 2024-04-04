@@ -13,7 +13,7 @@ public abstract class AbstractCommand
         _validator = validator;
     }
 
-    protected virtual bool CheckIsArgsNotEmpty(string[] args)
+    protected virtual bool DetermineCommandByArgs(string[] args)
         => args.Length > 0;
 
     public abstract Options? ExecuteCommand();
@@ -36,7 +36,7 @@ public abstract class AbstractCommand
     public static Func<IServiceProvider, Func<string[], AbstractCommand>> GetCommand
         => provider => input =>
         {
-            var command = provider.GetServices<AbstractCommand>().First(c => c.CheckIsArgsNotEmpty(input));
+            var command = provider.GetServices<AbstractCommand>().First(c => c.DetermineCommandByArgs(input));
 
             return command;
         };

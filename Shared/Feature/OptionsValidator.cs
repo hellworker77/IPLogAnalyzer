@@ -20,7 +20,7 @@ public class OptionsValidator: AbstractValidator<Options>
         RuleFor(x => x.AddressStart)
             .NotEmpty()
             .WithMessage("Address start must not be empty.")
-            .When(x => x.AddressMask.HasValue) // Only validate if AddressMask is provided
+            .When(x => x.AddressMask.HasValue) 
             .WithMessage("Address start is required when address mask is provided.")
             .Must(IsValidIpv4Address)
             .When(x=>x.AddressMask.HasValue)
@@ -28,10 +28,10 @@ public class OptionsValidator: AbstractValidator<Options>
 
         RuleFor(x => x.AddressMask)
             .GreaterThan(0)
-            .When(x => !string.IsNullOrEmpty(x.AddressStart)) // Only validate if AddressStart is provided
+            .When(x => !string.IsNullOrEmpty(x.AddressStart)) 
             .WithMessage("Address mask must be greater than 0.")
             .LessThanOrEqualTo(32)
-            .When(x => x.AddressMask.HasValue) // Only validate if provided
+            .When(x => x.AddressMask.HasValue) 
             .WithMessage("Address mask must be less than or equal to 32.");
     }
     private bool IsValidIpv4Address(string? address)
