@@ -14,8 +14,21 @@ public class ArgsIndependentCommand : AbstractCommand
         _configuration = configuration;
     }
 
+    protected override bool CheckIsArgsNotEmpty(string[] args)
+    {
+        return true;
+    }
+
     public override Options? ExecuteCommand()
     {
-        throw new NotImplementedException();
+        var options = new Options();
+        _configuration.GetSection("Options").Bind(options);
+        
+        if (Validate(options))
+        {
+            return options;
+        }
+
+        return null;
     }
 }
