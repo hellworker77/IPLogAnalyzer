@@ -3,4 +3,5 @@
 public interface IIpAnalyzer
 {
     void Analyze();
+    
 }

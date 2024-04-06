@@ -16,7 +16,7 @@ public static class ExtensionMethods
         => serviceCollection
             .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
             .AddArgsCommands()
-            .AddTransient<IIpAnalyzer, IpAnalyzer>()
+            .AddManagers()
             .AddMapsterFromAssembly()
             .AddConfiguration();
     private static IServiceCollection AddArgsCommands(this IServiceCollection serviceCollection)
@@ -24,6 +24,13 @@ public static class ExtensionMethods
             .AddTransient<AbstractCommand, ArgsDependentCommand>()
             .AddTransient<AbstractCommand, ArgsIndependentCommand>()
             .AddTransient(AbstractCommand.GetCommand);
+
+    private static IServiceCollection AddManagers(this IServiceCollection serviceCollection)
+        => serviceCollection
+            .AddTransient<IIpAnalyzer, IpAnalyzer>()
+            .AddTransient<IIpAnalyzerFilter, IpAnalyzerFilter>()
+            .AddTransient<IIpAnalyzerParser, IpAnalyzerParser>()
+            .AddTransient<IIpAnalyzerFileWorker, IpAnalyzerFileWorker>();
     private static IServiceCollection AddConfiguration(this IServiceCollection serviceCollection)
     {
         try
