@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerTests", "ManagerTests\ManagerTests.csproj", "{017A6CC3-7D50-483E-AFD1-61820F168136}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandTests", "CommandTests\CommandTests.csproj", "{CDACB62D-EEC1-4BC2-84B3-3022BE2B4641}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{E9062C31-6B73-4763-A2F8-9F6B0A3694BC} = {096FF4DC-2DCF-48C8-BFD0-897C0EEED12C}
 		{870DEC81-2F38-451F-9307-99940814CD84} = {E9062C31-6B73-4763-A2F8-9F6B0A3694BC}
 		{017A6CC3-7D50-483E-AFD1-61820F168136} = {C6A22C70-0F09-468E-9239-DA3A78D74489}
+		{CDACB62D-EEC1-4BC2-84B3-3022BE2B4641} = {C6A22C70-0F09-468E-9239-DA3A78D74489}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{798F6AD2-B1D1-444E-ADC4-F00036253C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -39,5 +42,9 @@ Global
 		{017A6CC3-7D50-483E-AFD1-61820F168136}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{017A6CC3-7D50-483E-AFD1-61820F168136}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{017A6CC3-7D50-483E-AFD1-61820F168136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDACB62D-EEC1-4BC2-84B3-3022BE2B4641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDACB62D-EEC1-4BC2-84B3-3022BE2B4641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDACB62D-EEC1-4BC2-84B3-3022BE2B4641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDACB62D-EEC1-4BC2-84B3-3022BE2B4641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

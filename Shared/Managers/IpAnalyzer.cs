@@ -37,7 +37,7 @@ public class IpAnalyzer : IIpAnalyzer
 
         var rawData = _fileWorker.ReadData(options.FileLog);
         var logs = _parser.Parse(rawData);
-        _filter.FilterLogs(logs, options);
+        logs = _filter.FilterLogs(logs, options);
         var data = _filter.CollectByQuantity(logs);
         _fileWorker.WriteData(data, options.FileOutput);
     }

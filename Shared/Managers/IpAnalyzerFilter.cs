@@ -5,8 +5,8 @@ namespace Shared.Managers;
 
 public class IpAnalyzerFilter : IIpAnalyzerFilter
 {
-    public void FilterLogs(IList<LogEntry> logs, AnalyzerOptions options)
-        => logs = logs.Where(log =>
+    public IList<LogEntry> FilterLogs(IList<LogEntry> logs, AnalyzerOptions options)
+        => logs.Where(log =>
             IsAddressMatches(log.Ipv4Address, options.AddressStart, options.AddressMask) &&
             IsDateMatches(log.Date, options.DateStart, options.DateEnd)).ToList();
 
