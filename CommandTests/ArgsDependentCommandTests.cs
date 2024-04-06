@@ -16,8 +16,8 @@ public class ArgsDependentCommandTests
             "--file-output", @"A:\Output.txt",
             "--address-start", "127.0.0.2",
             "--address-mask", "24",
-            "--start-date", "29.04.2002",
-            "--end-date", "20.12.2012"
+            "--time-start", "29.04.2002",
+            "--time-end", "20.12.2012"
         };
         
         var validatorMock = new Mock<IValidator<Options>>();

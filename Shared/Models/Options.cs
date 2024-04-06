@@ -10,10 +10,10 @@ public class Options
     [Option("file-output", Required = true)]
     public string FileOutput { get; set; }
 
-    [Option("start-date", Required = true)]
+    [Option("time-start", Required = true)]
     public string DateStart { get; set; }
 
-    [Option("end-date", Required = true)] 
+    [Option("time-end", Required = true)] 
     public string DateEnd { get; set; }
     
     [Option("address-start")] 
