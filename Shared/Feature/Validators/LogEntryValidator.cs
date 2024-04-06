@@ -9,6 +9,6 @@ public class LogEntryValidator: AbstractValidator<LogEntry>
     {
         RuleFor(x => x.Ipv4Address)
             .Must(ValidationExtensions.IsValidIpv4Address)
-            .WithMessage("Address start is not a valid IPv4 address.");
+            .WithMessage("Address is not a valid IPv4 address.");
     }
 }
