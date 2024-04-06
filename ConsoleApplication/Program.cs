@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Shared.CommandFactory;
 using Shared.Extensions;
 using Shared.Feature;
+using Shared.Managers.Interfaces;
 using Shared.Models;
 
 var serviceCollection = new ServiceCollection();
@@ -13,22 +14,14 @@ serviceCollection.AddSingleton(args);
 
 var provider = serviceCollection.BuildServiceProvider();
 
-var commandFactory = provider.GetService<Func<string[], AbstractCommand>>();
-if (commandFactory is null)
+var ipAnalyzer = provider.GetService<IIpAnalyzer>();
+if (ipAnalyzer is null)
 {
-    Console.WriteLine("Command for executing not found :(");
+    PrintExtensions.PrintError("Ip analyzer not found :(");
+    Console.ReadKey();
     return;
 }
 
-var command = commandFactory(args);
-var options = command.ExecuteCommand();
-
-if (options is null)
-{
-    return;
-}
-
-
+ipAnalyzer.Analyze();
 
 Console.ReadKey();
-
