@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Extensions;
 using Shared.Models;
 
 namespace Shared.CommandFactory;
@@ -16,7 +17,7 @@ public abstract class AbstractCommand
     protected virtual bool DetermineCommandByArgs(string[] args)
         => args.Length > 0;
 
-    public abstract Options? ExecuteCommand();
+    public abstract AnalyzerOptions? ExecuteCommand();
 
     protected virtual bool Validate(Options options)
     {
@@ -26,18 +27,19 @@ public abstract class AbstractCommand
             return true;
         }
 
-        foreach (var validationFailure in validationResult.Errors)
-        {
-            Console.WriteLine(validationFailure.ErrorMessage);
-        }
-
+        validationResult.Errors.Print();
+        
         return false;
     }
-    public static Func<IServiceProvider, Func<string[], AbstractCommand>> GetCommand
-        => provider => input =>
+    public static Func<IServiceProvider, Func<AbstractCommand>> GetCommand
+        => provider =>
         {
-            var command = provider.GetServices<AbstractCommand>().First(c => c.DetermineCommandByArgs(input));
+            return () =>
+            {
+                var args = provider.GetService<string[]>() ?? Array.Empty<string>();
+                var command = provider.GetServices<AbstractCommand>().First(c => c.DetermineCommandByArgs(args));
 
-            return command;
+                return command;
+            };
         };
 }

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MapsterMapper;
 using Microsoft.Extensions.Configuration;
 using Shared.Models;
 
@@ -7,11 +8,14 @@ namespace Shared.CommandFactory;
 public class ArgsIndependentCommand : AbstractCommand
 {
     private readonly IConfigurationRoot _configuration;
+    private readonly IMapper _mapper;
 
-    public ArgsIndependentCommand(IConfigurationRoot configuration, 
+    public ArgsIndependentCommand(IConfigurationRoot configuration,
+        IMapper mapper,
         IValidator<Options> validator) : base(validator)
     {
         _configuration = configuration;
+        _mapper = mapper;
     }
 
     protected override bool DetermineCommandByArgs(string[] args)
@@ -19,14 +23,14 @@ public class ArgsIndependentCommand : AbstractCommand
         return true;
     }
 
-    public override Options? ExecuteCommand()
+    public override AnalyzerOptions? ExecuteCommand()
     {
         var options = new Options();
         _configuration.GetSection("Options").Bind(options);
         
         if (Validate(options))
         {
-            return options;
+            return _mapper.Map<AnalyzerOptions>(options);
         }
 
         return null;
