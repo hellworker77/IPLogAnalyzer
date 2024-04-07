@@ -1,11 +1,6 @@
-﻿using CommandLine;
-using FluentValidation.Results;
-using Microsoft.Extensions.DependencyInjection;
-using Shared.CommandFactory;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Shared.Extensions;
-using Shared.Feature;
 using Shared.Managers.Interfaces;
-using Shared.Models;
 
 var serviceCollection = new ServiceCollection();
 
@@ -23,5 +18,4 @@ if (ipAnalyzer is null)
 }
 
 ipAnalyzer.Analyze();
-
 Console.ReadKey();

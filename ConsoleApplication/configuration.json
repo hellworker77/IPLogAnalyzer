@@ -1,8 +1,10 @@
 {
   "Options": {
-    "FileLog": "",
-    "FileOutput": "",
-    "AddressStart": "",
-    "AddressMask": 0
+    "FileLog": "A:/Log.txt",
+    "FileOutput": "A:/out.txt",
+    "AddressStart": "127.0.0.1",
+    "AddressMask": null,
+    "DateStart": "29.04.2002",
+    "DateEnd": "20.12.2012"
   }
 }

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using MapsterMapper;
 using Microsoft.Extensions.Configuration;
+using Shared.Extensions;
 using Shared.Models;
 
 namespace Shared.CommandFactory;
@@ -18,13 +19,11 @@ public class ArgsIndependentCommand : AbstractCommand
         _mapper = mapper;
     }
 
-    protected override bool DetermineCommandByArgs(string[] args)
-    {
-        return true;
-    }
+    protected override bool DetermineCommandByArgs(string[] args) => true;
 
     public override AnalyzerOptions? ExecuteCommand()
     {
+        PrintExtensions.PrintInfo("Args not received using configuration file");
         var options = new Options();
         _configuration.GetSection("Options").Bind(options);
         

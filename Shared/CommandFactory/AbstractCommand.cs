@@ -31,6 +31,7 @@ public abstract class AbstractCommand
         
         return false;
     }
+    
     public static Func<IServiceProvider, Func<AbstractCommand>> GetCommand
         => provider =>
         {

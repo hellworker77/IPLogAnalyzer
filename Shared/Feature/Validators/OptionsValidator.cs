@@ -36,11 +36,11 @@ public class OptionsValidator: AbstractValidator<Options>
             .Must(BeValidDate).WithMessage("Bad date");
         
         RuleFor(x =>x.DateEnd)
-            .NotEmpty().WithMessage("Start date could not be empty")
+            .NotEmpty().WithMessage("End date could not be empty")
             .Matches(@"^\d{2}\.\d{2}\.\d{4}$").WithMessage("Wrong date format (estimated: dd.MM.yyyy)")
             .Must(BeValidDate).WithMessage("Bad date");
-        
     }
+    
     private bool BeValidDate(string dateString)
     {
         return DateTime.TryParseExact(dateString, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out _);

@@ -21,6 +21,7 @@ public class ArgsDependentCommand : AbstractCommand
     
     public override AnalyzerOptions? ExecuteCommand()
     {
+        PrintExtensions.PrintInfo("Args received");
         var parserResult = Parser.Default.ParseArguments<Options>(_args);
 
         if (parserResult.Errors.Any())

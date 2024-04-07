@@ -19,35 +19,29 @@ public static class ExtensionMethods
             .AddManagers()
             .AddMapsterFromAssembly()
             .AddConfiguration();
+    
     private static IServiceCollection AddArgsCommands(this IServiceCollection serviceCollection)
         => serviceCollection
             .AddTransient<AbstractCommand, ArgsDependentCommand>()
             .AddTransient<AbstractCommand, ArgsIndependentCommand>()
             .AddTransient(AbstractCommand.GetCommand);
-
+    
     private static IServiceCollection AddManagers(this IServiceCollection serviceCollection)
         => serviceCollection
             .AddTransient<IIpAnalyzer, IpAnalyzer>()
             .AddTransient<IIpAnalyzerFilter, IpAnalyzerFilter>()
             .AddTransient<IIpAnalyzerParser, IpAnalyzerParser>()
             .AddTransient<IIpAnalyzerFileWorker, IpAnalyzerFileWorker>();
+    
     private static IServiceCollection AddConfiguration(this IServiceCollection serviceCollection)
     {
-        try
-        {
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("configuration.json", optional: false, reloadOnChange: true);
-            var config = builder.Build();
-            serviceCollection.AddSingleton(config);
-        }
-        catch(FileNotFoundException)
-        {
-            Console.WriteLine("configuration.json doesn't exist");
-        }
-
-        return serviceCollection;
+        var builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("configuration.json", optional: true, reloadOnChange: true);
+        var config = builder.Build();
+        return serviceCollection.AddSingleton(config);
     }
+    
     private static IServiceCollection AddMapsterFromAssembly(this IServiceCollection services)
     {
         var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
